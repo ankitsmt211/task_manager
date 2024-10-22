@@ -2,6 +2,7 @@ from rest_framework import status, serializers
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
+from tasks.core.pagination.CustomPagination import CustomPagination
 from tasks.models import Task
 from users.models import User
 
@@ -15,7 +16,7 @@ class SerializerTaskList(serializers.ModelSerializer):
 @api_view(['GET'])
 def get_task_list_by_user(request, *args, **kwargs):
     """
-    GET view to return list of all tasks for a given user
+    GET view to return paginated list of all tasks for a given user
     :param request: The request object containing the task data.
     :param args: Additional positional arguments.
     :param kwargs: Additional keyword arguments.
@@ -29,5 +30,7 @@ def get_task_list_by_user(request, *args, **kwargs):
     user_obj = User.objects.filter(pk=user_id).first()
     if not user_obj:
         return Response(data='Invalid User ID', status=status.HTTP_400_BAD_REQUEST)
-    serializer = SerializerTaskList(instance=user_obj.tasks, many=True)
-    return Response(data=serializer.data, status=status.HTTP_200_OK)
+    paginator = CustomPagination()
+    result_page = paginator.paginate_queryset(queryset=user_obj.tasks.all(), request=request)
+    serializer = SerializerTaskList(instance=result_page, many=True)
+    return paginator.get_paginated_response(data=serializer.data)
