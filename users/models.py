@@ -1,4 +1,5 @@
 import uuid
+from datetime import datetime, timezone
 
 from django.db import models
 
@@ -37,3 +38,8 @@ class User(AbstractUser):
     updated_at = models.DateTimeField()
     role = models.CharField(choices=ROLE_CHOICES, max_length=50)
     password = models.CharField(max_length=255)
+
+    def save(self, *args, **kwargs):
+        self.created_at = datetime.now(timezone.utc)
+        self.updated_at = datetime.now(timezone.utc)
+        return super(User, self).save(*args, **kwargs)
