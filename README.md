@@ -9,8 +9,8 @@
 
 1. Setup virtual environment
     ```
-   python -m venv venv # create virtual enviroment
-   source venv/bin/active # active virtual environment
+   python3 -m venv venv # create virtual enviroment
+   source venv/bin/activate # active virtual environment
    ```
    
 1. Install Dependencies
@@ -21,12 +21,12 @@
 1. Migrations
 
    ```
-   python manage.py migrate
+   python3 manage.py migrate
    ```
    
 1. Run local Server
     ```
-   python manage.py runserver
+   python3 manage.py runserver
    ```
    
 ---
@@ -110,7 +110,7 @@ To generate sample user data, follow these steps:
 
 1. Open the Python interactive shell:
    ```bash
-   python manage.py shell
+   python3 manage.py shell
 
 1. Copy complete file from this path
     ```
@@ -127,7 +127,7 @@ NOTE: You can use API to create tasks
 1. create superuser 
 
    ```
-   python manage.py createsuperuser 
+   python3 manage.py createsuperuser 
    ```
    
 2. Login to admin using super user credentials
