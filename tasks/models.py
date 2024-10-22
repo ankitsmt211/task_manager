@@ -1,4 +1,5 @@
 import uuid
+from datetime import timezone, datetime
 
 from django.db import models
 
@@ -31,5 +32,10 @@ class Task(models.Model):
     created_at = models.DateTimeField()
     task_type = models.CharField(null=True, blank=True, max_length=50)
     completed_at = models.DateTimeField(null=True, blank=True)
-    status = models.CharField(default='PENDING', choices=STATUS_CHOICES, null=True, blank=True, max_length=50)
+    status = models.CharField(default='TODO', choices=STATUS_CHOICES, null=True, blank=True, max_length=50)
     users = models.ManyToManyField(User, related_name='tasks', blank=True)
+
+    def save(self, *args, **kwargs):
+        self.created_at = datetime.now(timezone.utc)
+        return super(Task, self).save(*args, **kwargs)
+
