@@ -11,6 +11,21 @@ ROLE_CHOICES = (
 
 
 class User(AbstractUser):
+    """
+    Model representing a user
+
+    id: Unique identifier for the user
+    is_active: Boolean. Designates whether this user should be treated as active
+    username: Unique username for the user
+    email: Email address of the user
+    mobile_number: Mobile number of the user
+    first_name: First name of the user
+    last_name: Last name of the user
+    created_date: Date of creation of the user
+    updated_date: Date of last modification of the user
+    role: Role of the user
+    password: Password of the user
+    """
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     is_active = models.BooleanField(default=True)
     username = models.CharField(max_length=50, unique=True)

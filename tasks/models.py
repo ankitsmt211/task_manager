@@ -13,6 +13,18 @@ STATUS_CHOICES = (
 
 
 class Task(models.Model):
+    """
+    Model representing a task.
+
+    id: Unique task identifier
+    name: Task name
+    description: Task description
+    created_at: Creation date
+    task_type: Task type
+    completed_at: Completion date
+    status: Task status
+    users: Users who are assigned to this task
+    """
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=255)
     description = models.CharField(null=True, blank=True, max_length=255)
