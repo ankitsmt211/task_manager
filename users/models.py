@@ -21,3 +21,4 @@ class User(AbstractUser):
     created_at = models.DateTimeField()
     updated_at = models.DateTimeField()
     role = models.CharField(choices=ROLE_CHOICES, max_length=50)
+    password = models.CharField(max_length=255)
