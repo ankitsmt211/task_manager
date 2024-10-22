@@ -14,6 +14,13 @@ class SerializerTask(serializers.ModelSerializer):
 
 @api_view(['POST'])
 def create_task(request, *args, **kwargs):
+    """
+    POST view to create a new task.
+    :param request: The request object containing the task data.
+    :param args: Additional positional arguments.
+    :param kwargs: Additional keyword arguments.
+    :return: Response with task data or errors.
+    """
     serializer = SerializerTask(data=request.data)
     if not serializer.is_valid():
         return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)

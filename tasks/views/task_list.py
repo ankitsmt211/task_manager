@@ -14,6 +14,13 @@ class SerializerTaskList(serializers.ModelSerializer):
 
 @api_view(['GET'])
 def get_task_list_by_user(request, *args, **kwargs):
+    """
+    GET view to return list of all tasks for a given user
+    :param request: The request object containing the task data.
+    :param args: Additional positional arguments.
+    :param kwargs: Additional keyword arguments.
+    :return: Response with task list or errors.
+    """
     # fetch task list for a specific user and return
     user_id = kwargs.get('user_id')
     if not user_id:

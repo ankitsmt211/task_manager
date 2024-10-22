@@ -8,6 +8,13 @@ from users.models import User
 
 @api_view(['POST'])
 def assign_task(request, *args, **kwargs):
+    """
+    POST view to assign task to user
+    :param request: The request object containing the task data.
+    :param args: Additional positional arguments.
+    :param kwargs: Additional keyword arguments.
+    :return: Response with success response or errors.
+    """
     user_id = kwargs.get('user_id')
     task_id = kwargs.get('task_id')
     if not user_id or not task_id:
