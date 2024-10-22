@@ -1,3 +1,6 @@
+# Task Manager
+
+---
 ## Setup Project Locally
 
 
