@@ -18,6 +18,10 @@
    pip install -r requirements.txt
    ```
    
+1. Database
+
+   Note: Using sqlite for database, make sure you have sqlite installed in your machine
+   
 1. Migrations
 
    ```
